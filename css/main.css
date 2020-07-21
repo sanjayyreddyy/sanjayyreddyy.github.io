@@ -1,0 +1,45 @@
+.site-header
+{
+    
+    color:cyan;
+    height: 100vh;
+    font-family:monospace;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic
+{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    align-self: center;
+ 
+}
+.lc
+{
+    color:white;
+}
+body
+{
+    margin:0;
+    padding: 0;
+    line-height: 15px;
+    background-image: url("https://thumbs.gfycat.com/WeirdFloweryEft-size_restricted.gif");
+                  /* background-image: url("https://cdn.dribbble.com/users/319473/screenshots/4111136/reinvently_insights_3.0.gif"); */
+                  background-repeat:no-repeat ;
+                  background-position: center center;
+                  background-attachment: fixed;
+                  background-size: cover;
+}
+
+.ter_layout
+{   
+    
+    padding: 0;
+    margin: 10px;
+    color:lime;
+    font-size: 12px;
+}
