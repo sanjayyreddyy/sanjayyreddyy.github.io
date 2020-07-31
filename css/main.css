@@ -2,6 +2,7 @@
 {
     
     color:cyan;
+    color: #ffdd00;
     height: 100vh;
     font-family:monospace;
     display:flex;
@@ -12,34 +13,34 @@
 
 .profile-pic
 {
-    border-radius: 50%;
+    border-radius: 20%;
     height: 200px;
     width: 200px;
     align-self: center;
+    border: #2ec866 2px solid;
+    box-shadow: 0 0 1px 1px blue;
+    
  
 }
 .lc
 {
-    color:white;
+    color: white;
 }
 body
-{
+{   
     margin:0;
     padding: 0;
     line-height: 15px;
-    background-image: url("https://thumbs.gfycat.com/WeirdFloweryEft-size_restricted.gif");
-                  /* background-image: url("https://cdn.dribbble.com/users/319473/screenshots/4111136/reinvently_insights_3.0.gif"); */
-                  background-repeat:no-repeat ;
-                  background-position: center center;
-                  background-attachment: fixed;
-                  background-size: cover;
+    background-color: black;
+    border: red 5px solid;
 }
 
 .ter_layout
 {   
-    
+    font-family: monospace;
     padding: 0;
     margin: 10px;
-    color:lime;
+    font-size: 15px;
+    color:#2ec866;
     font-size: 12px;
 }
