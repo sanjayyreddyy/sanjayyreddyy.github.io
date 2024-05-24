@@ -1,48 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanjay's Portfolio</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100vh;
+      margin: 0;
+      padding-top: 10%;
+    }
 
-<html>
-        <head>
-        <title>Sanjay Reddy A V</title>
-        <meta content="width=device-width, initial -scale=1" name="viewport">
-        <link href="css/main.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="main.js"></script>
+    .terminal {
+      width: 80%;
+      max-width: 800px;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 
-	</head>
-	
-	<body >
-        	<header class="site-header">
-	        <img class="profile-pic" id="dynamicheight" src="https://avatars0.githubusercontent.com/u/50801760?s=460&u=da19e17e66e41cb1ee6b020a3d7f5d841005cb16&v=4">
-                <div >
-                        <h2>Hello World! I'm Sanjay Reddy... </h1>
-                        <h3>Computer Science Student</h3>
-                        <h3>Working as Systems Engineer at TCS </h3>
-                        <h3>Learning Big Data Technologies</h3>
-                </div>
-                <div class="ter_layout">
-                        <h3>> Sanjay.WorksAt <br> "Tata Consultancy Services"</h3>
-			<h3>> Sanjay.Resume <br> &nbsp;> <a href="/files/Sanjay_Resume.pdf"> Resume </a></h3>
-                        <h3>> Sanjay.JobResponsibilities <br> ["Airflow Orchestration", "Data Handling ", "PySpark Scripts"] </h3>
-                        <h3>> Sanjay.Skills <br> ["Big Data", "Python ", "PySpark", "Docker", "Web Development", "SQL"] </h3>
-                        <h3>> Sanjay.Certificates <br> 
-                                
-                                &nbsp;> <a href="/files/Infosys Certification.pdf"> Infosys Certified Software Programmer</a> <br>
-                                &nbsp;> <a href="/files/edureka pyspark.pdf">  Edureka-PySpark Certification</a><br>
-                                &nbsp;> <a href="/files/epam-pep-certificate.pdf">  EPAM PEP</a><br>
-                                &nbsp;> <a href="/files/python certified.png">  Python Certified</a><br>
-                                &nbsp;> <a href="files/java certified.png">  Java Certified</a><br>
-                                
+    .terminal-header {
+      background-color: #2e2e2e;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-                        <h3>> Sanjay.origin<br> "Chittoor, INDIA"
-                        <h3>> Sanjay.education <br>"Sree Vidyanikethan Engineering College"</h3>
-                        <h3>> Sanjay.Graduation <br> "2021"</h3>
-                        <h3>> Sanjay.interests <br> ["code", "music", "travel", "food", "games", "memes"]</h3>
-                        <h3>> Sanjay.UserNames<br> 
-                                [ <a class="lc" href="https://github.com/sanjayyreddyy" target="_blank">GitHub</a>, 
-                                <a class="lc" href="https://www.linkedin.com/in/sanjayyreddyy" target="_blank">LinkedIn</a>,
-                                <a class="lc" href="https://hackerrank.com/hackavsr" target="_blank">HackerRank</a> 
-                                ]</h3>
-                        
-                </div>
-                </header>
-	</body>
+    .buttons {
+      display: flex;
+    }
+
+    .buttons span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .close {
+      background-color: #ff5f56;
+    }
+
+    .minimize {
+      background-color: #ffbd2e;
+    }
+
+    .zoom {
+      background-color: #27c93f;
+    }
+
+    .title {
+      flex-grow: 1;
+      text-align: center;
+      color: #c7c7c7;
+    }
+
+    .terminal-body {
+      background-color: #1e1e1e;
+      padding: 20px;
+      height: calc(90vh - 20px);
+      overflow-y: auto;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: justify;
+    }
+
+    .hidden {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .visible {
+      display: block;
+      opacity: 1;
+    }
+
+    pre {
+      margin: 0;
+      color: #00ff00;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      text-align: justify;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .command {
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+
+    .header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .indent {
+      margin-left: 20px;
+    }
+
+    a {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 20px;
+      background-color: #00ff00;
+      animation: blink 1s step-end infinite;
+      vertical-align: bottom;
+    }
+
+    @keyframes blink {
+      from, to { background-color: transparent; }
+      50% { background-color: #00ff00; }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .typing-effect {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #00ff00;
+      animation: typing 2s steps(100, end) 0s 1 normal both;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="buttons">
+        <span class="close"></span>
+        <span class="minimize"></span>
+        <span class="zoom"></span>
+      </div>
+      <div class="title">Portfolio</div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="header">
+        <p class="bold typing-effect">SANJAY REDDY, AJJU VIJAY</p>
+        <p class="bold">Charlotte, USA | +1 (980) 345-0774 | <a href="mailto:sajjuvij@uncc.edu">sajjuvij@uncc.edu</a> | <a href="mailto:useravsr@gmail.com">useravsr@gmail.com</a> | <a href="https://www.linkedin.com/in/sanjayyreddyy" target="_blank">LinkedIn</a></p>
+      </div>
+      <p class="bold command" onclick="toggleSection('summary', this)">> Sanjay.Summary<span class="cursor hidden"></span></p>
+      <pre id="summary" class="hidden indent">Data Engineer focused on building and maintaining efficient data pipelines for both batch and streaming tasks. Skilled in automating processes with Python. Proficient in optimizing Spark scripts and orchestrating complex workflows using Apache Airflow and deploying applications effectively. Excels at organizing and analyzing diverse data sources to drive informed decision-making. Committed to ongoing learning and staying ahead of technological advancements.</pre>
+      <p class="bold command" onclick="toggleSkills(this)">> Sanjay.Skills<span class="cursor hidden"></span></p>
+      <div id="skills" class="hidden">
+        <pre class="indent">● Languages: Expert in Python, proficient in Java, Javascript, SQL, PL/SQL, Shell Scripting, R.</pre>
+        <pre class="indent">● Web Technologies: Proficient in HTML, CSS, JavaScript, PHP, Bootstrap, Jquery.</pre>
+        <pre class="indent">● Technologies: Big Data, Apache Spark, Hadoop, Oracle DB, Airflow, PySpark, Docker, Redis.</pre>
+        <pre class="indent">● Tools: Experienced with PyCharm, Anaconda, Jyputer, Visual Studio Code, Git, BitBucket, Putty, FileZilla, Jira</pre>
+      </div>
+      <p class="bold command" onclick="toggleSection('education', this)">> Sanjay.Education<span class="cursor hidden"></span></p>
+      <pre id="education" class="hidden indent">Master of Science, Computer Science, GPA: 3.9/4
+University of North Carolina at Charlotte, Charlotte, NC
+Course Work: Algorithm & Data Structures, Intelligent Systems, Visual Analytics, Information Visualization, Big Data, Databases, Computer Networks, Software System Design & Implementation, Knowledge Based Systems, Data Science, and Machine Learning
+</pre>
+      <p class="bold command" onclick="toggleSection('workexperience', this)">> Sanjay.WorkExperience<span class="cursor hidden"></span></p>
+      <pre id="workexperience" class="hidden indent">Systems Engineer - Data Engineering, Tata Consultancy Services Limited, Bangalore, India
+Jan 2021 - Dec 2022
+- Designed and enhanced data ingestion pipelines for both batch and real-time processing.
+- Authored and refined Python scripts to automate complex data handling tasks.
+- Orchestrated multifaceted workflows using Apache Airflow.
+- Deployed multi-environment applications via YARN.
+- Automated and optimized Spark script execution to resolve small file issues in HDFS.
+- Conducted advanced tuning of Apache Spark and SQL scripts.
+- Developed tailored pruning procedures for Docker resources.
+- Applied machine learning to predict market trends.
+
+Campus Student Assistant - Sree Vidyanikethan Engineering College (JNTUA)
+Jun 2019 - Dec 2020
+- Led Python instructional sessions for 40 students.
+- Provided personalized debugging and problem-solving support.
+</pre>
+      <p class="bold command" onclick="toggleSection('projects', this)">> Sanjay.Projects<span class="cursor hidden"></span></p>
+      <pre id="projects" class="hidden indent">
+
+● Web Scraping:
+  - Implemented a comprehensive Web Scraping solution using BeautifulSoup and URL handling module to extract pricing and data from an e-commerce website.
+  - Data was then organized for easy comprehension, enabling future price tracking and forecasting.
+  - Demonstrated proficiency in data extraction and manipulation.
+
+● NextGen overseas Edu-Social Networking:
+  - Led the development of a web-based social networking platform focused on overseas education.
+  - Enabled like-minded students to connect, share university insights, and exchange information.
+  - Leveraged HTML, CSS, JavaScript, PHP, and MySQL to create an interactive platform fostering educational collaboration.
+
+● Attendance Management System:
+  - Utilized OpenCV-Python Facial recognition to develop an Attendance Management System captures facial features for attendance marking, facilitating streamlined tracking and management oversight.
+  - Significantly improved attendance accuracy and efficiency.
+
+● Driver Drowsiness Detection System:
+  - Created an application utilizing OpenCV for face and eye detection.
+  - Employed a CNN model for predicting driver alertness.
+  - Actively alerts drivers with sound when drowsiness is detected, enhancing road safety.
+
+● Alumni gate pass using QR code:
+  - Developed an efficient system generating unique QR codes for alumni gate pass.
+  - Ensured hassle-free access to university premises.
+  - Enhanced security and streamlined access control.
+</pre>
+      <p class="bold command" onclick="toggleSection('certificates', this)">> Sanjay.Certificates<span class="cursor hidden"></span></p>
+      <pre id="certificates" class="hidden indent">
+● Infosys Certified Software Programmer - <a href="https://sanjayyreddyy.github.io/files/Infosys%20Certification.pdf" target="_blank">View Certificate</a>
+● Apache Spark Developer using Python - <a href="https://sanjayyreddyy.github.io/files/edureka%20pyspark.pdf" target="_blank">View Certificate</a>
+</pre>
+    </div>
+  </div>
+  <script>
+    function toggleSection(sectionId, element) {
+      const section = document.getElementById(sectionId);
+      section.classList.toggle('hidden');
+      setTimeout(() => {
+        section.classList.toggle('visible');
+        if (!section.classList.contains('hidden')) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
+      const cursor = element.querySelector('.cursor');
+      cursor.classList.toggle('hidden');
+      setTimeout(() => {
+        cursor.classList.toggle('hidden');
+      }, 500);
+    }
+
+    function toggleSkills(element) {
+      const skills = document.getElementById('skills');
+      skills.classList.toggle('hidden');
+      setTimeout(() => {
+        skills.classList.toggle('visible');
+        if (!skills.classList.contains('hidden')) {
+          skills.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
+      const cursor = element.querySelector('.cursor');
+      cursor.classList.toggle('hidden');
+      setTimeout(() => {
+        cursor.classList.toggle('hidden');
+      }, 500);
+    }
+
+    // Typing effect for name
+    document.addEventListener("DOMContentLoaded", function() {
+      const typingEffect = document.querySelector('.typing-effect');
+      typingEffect.style.width = typingEffect.scrollWidth + 'px';
+    });
+  </script>
+</body>
 </html>
