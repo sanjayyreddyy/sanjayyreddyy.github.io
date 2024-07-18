@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sanjay's Portfolio</title>
   <style>
+    /* Base styles */
     body {
       background-color: #1e1e1e;
       color: #00ff00;
@@ -150,6 +151,29 @@
       border-right: 3px solid #00ff00;
       animation: typing 2s steps(100, end) 0s 1 normal both;
     }
+
+    /* PDF Viewer styles */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .pdf-viewer {
+      background-color: #fff;
+      max-width: 80%;
+      max-height: 80%;
+      overflow: auto;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -204,72 +228,109 @@ Jun 2019 - Dec 2020 </b>
 <b>● Web Scraping:</b>
   - Implemented a comprehensive Web Scraping solution using BeautifulSoup and URL handling module to extract pricing and data from an e-commerce website.
   - Data was then organized for easy comprehension, enabling future price tracking and forecasting.
-  - Demonstrated proficiency in data extraction and manipulation.
+  - Demonstrated significant improvement in performance and resilience for web scraping algorithm.
 
-<b>● NextGen overseas Edu-Social Networking:</b>
-  - Led the development of a web-based social networking platform focused on overseas education.
-  - Enabled like-minded students to connect, share university insights, and exchange information.
-  - Leveraged HTML, CSS, JavaScript, PHP, and MySQL to create an interactive platform fostering educational collaboration.
-
-<b>● Attendance Management System:</b>
-  - Utilized OpenCV-Python Facial recognition to develop an Attendance Management System captures facial features for attendance marking, facilitating streamlined tracking and management oversight.
-  - Significantly improved attendance accuracy and efficiency.
-
-<b>● Driver Drowsiness Detection System:</b>
-  - Created an application utilizing OpenCV for face and eye detection.
-  - Employed a CNN model for predicting driver alertness.
-  - Actively alerts drivers with sound when drowsiness is detected, enhancing road safety.
-
-<b>● Alumni gate pass using QR code:</b>
-  - Developed an efficient system generating unique QR codes for alumni gate pass.
-  - Ensured hassle-free access to university premises.
-  - Enhanced security and streamlined access control.
+<b>● Social Networking:</b>
+  - Designed and implemented a social networking application for the educational field.
+  - Programmed web services for data storage, access, and transformation.
+  - Ensured successful usage in private or public internet networks, culminating in an extensive user base.
+  - Inclined greater stability and better operational expertise with educational networking platform.
 </pre>
       <p class="bold command" onclick="toggleSection('certificates', this)">> Sanjay.Certificates<span class="cursor hidden"></span></p>
-      <pre id="certificates" class="hidden indent">
-<b>● Infosys Certified Software Programmer</b> - <a href="https://sanjayyreddyy.github.io/files/Infosys%20Certification.pdf" target="_blank">View Certificate</a>
-<b>● Apache Spark Developer using Python</b> - <a href="https://sanjayyreddyy.github.io/files/edureka%20pyspark.pdf" target="_blank">View Certificate</a>
-</pre>
+      <pre id="certificates" class="hidden indent "><b>● Infosys Certified Software Programmer</b> - <a href="#" onclick="displayPdf('https://sanjayyreddyy.github.io/files/Infosys%20Certification.pdf'); return false;">View Certificate</a>
+<b>● Apache Spark Developer using Python</b> - <a href="#" onclick="displayPdf('https://sanjayyreddyy.github.io/files/edureka%20pyspark.pdf'); return false;">View Certificate</a></pre>
+
+      <p class="bold command" onclick="toggleSection('contact', this)">> Sanjay.Contact<span class="cursor hidden"></span></p>
+      <pre id="contact" class="hidden indent "><b>Charlotte, NC, 9803450774</b> - <a href="mailto:sajjuvij@uncc.edu">sajjuvij@uncc.edu</a> - <a href="mailto:useravsr@gmail.com">useravsr@gmail.com</a> - <a href="https://www.linkedin.com/in/sanjayyreddyy" target="_blank">LinkedIn</a></pre>
     </div>
   </div>
+
+  <!-- PDF Viewer Overlay -->
+  <div class="overlay" id="pdf-overlay">
+    <div class="pdf-viewer" id="pdf-viewer"></div>
+  </div>
+
+  <!-- PDF.js library -->
+  <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
   <script>
+    // Function to toggle visibility of sections
     function toggleSection(sectionId, element) {
       const section = document.getElementById(sectionId);
-      section.classList.toggle('hidden');
-      setTimeout(() => {
-        section.classList.toggle('visible');
-        if (!section.classList.contains('hidden')) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 0);
       const cursor = element.querySelector('.cursor');
-      cursor.classList.toggle('hidden');
-      setTimeout(() => {
-        cursor.classList.toggle('hidden');
-      }, 500);
+      if (section.classList.contains('hidden')) {
+        section.classList.remove('hidden');
+        section.classList.add('visible');
+        cursor.classList.remove('hidden');
+      } else {
+        section.classList.remove('visible');
+        section.classList.add('hidden');
+        cursor.classList.add('hidden');
+      }
     }
 
+    // Function to toggle skills section
     function toggleSkills(element) {
       const skills = document.getElementById('skills');
-      skills.classList.toggle('hidden');
-      setTimeout(() => {
-        skills.classList.toggle('visible');
-        if (!skills.classList.contains('hidden')) {
-          skills.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 0);
       const cursor = element.querySelector('.cursor');
-      cursor.classList.toggle('hidden');
-      setTimeout(() => {
-        cursor.classList.toggle('hidden');
-      }, 500);
+      if (skills.classList.contains('hidden')) {
+        skills.classList.remove('hidden');
+        skills.classList.add('visible');
+        cursor.classList.remove('hidden');
+      } else {
+        skills.classList.remove('visible');
+        skills.classList.add('hidden');
+        cursor.classList.add('hidden');
+      }
     }
 
-    // Typing effect for name
-    document.addEventListener("DOMContentLoaded", function() {
-      const typingEffect = document.querySelector('.typing-effect');
-      typingEffect.style.width = typingEffect.scrollWidth + 'px';
+    // Function to display PDF in the overlay
+    function displayPdf(url) {
+      const pdfViewer = document.getElementById('pdf-viewer');
+      const overlay = document.getElementById('pdf-overlay');
+
+      PDFJS.getDocument(url).then(function(pdf) {
+        for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+          pdf.getPage(pageNum).then(function(page) {
+            const scale = 1.5;
+            const viewport = page.getViewport({ scale });
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport
+            };
+            
+            page.render(renderContext).promise.then(function() {
+              pdfViewer.appendChild(canvas);
+            });
+          });
+        }
+      });
+
+      overlay.style.display = 'flex';
+    }
+
+    // Function to close PDF viewer overlay
+    function closePdfViewer() {
+      const pdfViewer = document.getElementById('pdf-viewer');
+      pdfViewer.innerHTML = ''; // Clear previous PDF content
+      document.getElementById('pdf-overlay').style.display = 'none';
+    }
+
+    // Example usage of toggling sections
+    // You can add more functions as needed for other sections
+
+    // Initial command cursor blinking effect
+    document.addEventListener('DOMContentLoaded', function() {
+      const cursor = document.querySelector('.cursor');
+      cursor.classList.remove('hidden');
     });
+
   </script>
 </body>
 </html>
